@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from "next/server"
 
+// get api base url from env
+
+
+const API_BASE_URL = process.env.API_BASE_URL 
 
 export async function GET() {
 
@@ -22,7 +26,7 @@ const fetchLogin = async (payload: Payload) => {
         }
     }
 
-    const result = await fetch('http://localhost:8000/auth/token', {
+    const result = await fetch(`${API_BASE_URL}/auth/token`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
