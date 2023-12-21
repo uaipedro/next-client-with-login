@@ -98,10 +98,10 @@ const LoginForm: React.FC = () => {
             <button type="submit" role="primary">
               Login
             </button>
+            <div>
+              <Link href="/singin">Sing Up</Link>
+            </div>
           </form>
-          <div>
-            <Link href="/singin">create new account</Link>
-          </div>
         </div>
       )}
     </>

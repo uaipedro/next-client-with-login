@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const SinginForm: React.FC = () => {
@@ -8,6 +9,9 @@ const SinginForm: React.FC = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [signupError, setSignupError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+
+  const router = useRouter();
 
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
@@ -50,7 +54,8 @@ const SinginForm: React.FC = () => {
         }
       })
       .then((data) => {
-        // setIsLoggedIn(true);
+        setSuccessMessage("Account created successfully");
+        router.push("/login");
         console.log(data);
       })
       .catch((err) => {
@@ -63,7 +68,7 @@ const SinginForm: React.FC = () => {
     <div className="form-wrapper">
       <form onSubmit={handleSubmit} className="form">
         <div>
-          <h2>Sing In</h2>
+          <h2>Sing Up</h2>
         </div>
         <div>
           <input
@@ -109,10 +114,13 @@ const SinginForm: React.FC = () => {
         <button type="submit" role="primary">
           Sign Up
         </button>
+        {successMessage && (
+          <div className="success-message">{successMessage}</div>
+        )}
+        <div>
+          <Link href="/login">Login</Link>
+        </div>
       </form>
-      <div>
-        <Link href="/login">Login</Link>
-      </div>
     </div>
   );
 };
