@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { ImageFooter } from "./ImageFooter";
+import Link from "next/link";
 
 const LoginForm: React.FC = () => {
   const [username, setUsername] = useState("");
@@ -62,7 +63,7 @@ const LoginForm: React.FC = () => {
             <img src="/images/avatar/zeca.png" alt="avatar zeca" />
           </div>
 
-          <form onSubmit={handleSubmit} className="login-form">
+          <form onSubmit={handleSubmit} className="form">
             <div>
               <h2>Login</h2>
             </div>
@@ -91,12 +92,15 @@ const LoginForm: React.FC = () => {
               />
             </div>
 
-            <div className="error">{loginError}</div>
+            {loginError && <div className="error">{loginError}</div>}
 
             <button type="submit" role="primary">
               Login
             </button>
           </form>
+          <div>
+            <Link href="/singin">create new account</Link>
+          </div>
         </div>
       )}
     </>

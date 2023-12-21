@@ -55,7 +55,7 @@ body {
   z-index: 1000;
 }
 
-.login-form {
+.form {
   position: relative;
   
   display: flex;
@@ -70,7 +70,7 @@ body {
   z-index: 1000;
 }
 
-.login-form .error {
+.form .error {
   animation-name: slide-down;
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
