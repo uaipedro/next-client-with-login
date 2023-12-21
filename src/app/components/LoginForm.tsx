@@ -50,7 +50,7 @@ const LoginForm: React.FC = () => {
     <>
       {isLoggedIn ? (
         <div>
-          <h2>Welcome, {email}!</h2>
+          <h2>Bem vinde, {email}!</h2>
           <button onClick={() => setIsLoggedIn(false)}>Logout</button>
         </div>
       ) : (
