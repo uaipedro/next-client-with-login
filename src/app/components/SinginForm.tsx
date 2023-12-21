@@ -29,11 +29,34 @@ const SinginForm: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSignupError("");
     if (password !== confirmPassword) {
       setSignupError("Passwords do not match");
       return;
     }
-    // Add your signup logic here
+    fetch("/api/singin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, email, password }),
+    })
+      .then(async (res) => {
+        const data = await res.json();
+        if (res.ok) {
+          return data;
+        } else {
+          throw new Error(data.message);
+        }
+      })
+      .then((data) => {
+        // setIsLoggedIn(true);
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+        setSignupError(err.message);
+      });
   };
 
   return (

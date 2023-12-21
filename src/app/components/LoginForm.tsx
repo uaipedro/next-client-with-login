@@ -21,6 +21,7 @@ const LoginForm: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoginError("");
     // Add your login logic here
     fetch("/api/login", {
       method: "POST",
