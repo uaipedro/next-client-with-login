@@ -76,6 +76,8 @@ const SinginForm: React.FC = () => {
             placeholder="username"
             id="username"
             value={username}
+            minLength={3}
+            maxLength={20}
             onChange={handleUsernameChange}
             required
           />
@@ -96,6 +98,8 @@ const SinginForm: React.FC = () => {
             placeholder="password"
             id="password"
             value={password}
+            minLength={8}
+            maxLength={20}
             onChange={handlePasswordChange}
             required
           />
