@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { ImageFooter } from "./ImageFooter";
 import Link from "next/link";
 
 const LoginForm: React.FC = () => {
@@ -51,7 +50,7 @@ const LoginForm: React.FC = () => {
   return (
     <>
       {isLoggedIn ? (
-        <div>
+        <div className="form-wrapper">
           <h2>Bem vinde, {email}!</h2>
           <button onClick={() => setIsLoggedIn(false)}>Logout</button>
         </div>
