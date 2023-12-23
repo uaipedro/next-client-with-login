@@ -7,11 +7,17 @@ Este é um projeto [Next.js](https://nextjs.org/) inicializado com [`create-next
 Primeiro, execute o servidor de desenvolvimento:
 
 npm run dev
+
 # ou
+
 yarn dev
+
 # ou
+
 pnpm dev
+
 # ou
+
 bun dev
 
 Abra [http://localhost:3000](http://localhost:3000) no seu navegador para ver o resultado.
