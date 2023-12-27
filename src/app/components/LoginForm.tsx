@@ -4,14 +4,13 @@ import Link from "next/link";
 
 const LoginForm: React.FC = () => {
   const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [focus, setFocus] = useState<string | null>(null);
   const [loginError, setLoginError] = useState("");
 
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
+  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUsername(e.target.value);
   };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,7 +26,7 @@ const LoginForm: React.FC = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ username, password }),
     })
       .then(async (res) => {
         const data = await res.json();
@@ -51,15 +50,15 @@ const LoginForm: React.FC = () => {
     <>
       {isLoggedIn ? (
         <div className="form-wrapper">
-          <h2>Bem vinde, {email}!</h2>
+          <h2>Bem vinde, {username}!</h2>
           <button onClick={() => setIsLoggedIn(false)}>Logout</button>
         </div>
       ) : (
         <div className="form-wrapper">
-          <div className={email.includes("pedro") ? "kira" : "kira hide"}>
+          <div className={username.includes("pedro") ? "kira" : "kira hide"}>
             <img src="/images/avatar/kira.png" alt="avatar kira" />
           </div>
-          <div className={email.includes("mari") ? "zeca" : "zeca hide"}>
+          <div className={username.includes("mari") ? "zeca" : "zeca hide"}>
             <img src="/images/avatar/zeca.png" alt="avatar zeca" />
           </div>
 
@@ -69,12 +68,12 @@ const LoginForm: React.FC = () => {
             </div>
             <div>
               <input
-                type="email"
-                placeholder="email"
-                id="email"
-                value={email}
-                onChange={handleEmailChange}
-                onFocus={() => setFocus("email")}
+                type="text"
+                placeholder="username"
+                id="username"
+                value={username}
+                onChange={handleUsernameChange}
+                onFocus={() => setFocus("username")}
                 onBlur={() => setFocus(null)}
                 required
               />

@@ -45,7 +45,7 @@ const parseBody = async (req: NextRequest): Promise<Payload> => {
     const data = await req.json();
 
     return {
-        username: data.email,
+        username: data.username,
         password: data.password
     }
     
