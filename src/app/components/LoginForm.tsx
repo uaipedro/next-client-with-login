@@ -1,6 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import Cookies from "universal-cookie";
+import { useCookies } from "../hooks/use-cookies";
 
 const LoginForm: React.FC = () => {
   const [username, setUsername] = useState("");
@@ -8,6 +10,9 @@ const LoginForm: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [focus, setFocus] = useState<string | null>(null);
   const [loginError, setLoginError] = useState("");
+  const [token, setToken] = useState<string | null>(null); // Estado local para armazenar o token
+
+  const { cookies, setCookie } = useCookies();
 
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
@@ -38,6 +43,7 @@ const LoginForm: React.FC = () => {
       })
       .then((data) => {
         setIsLoggedIn(true);
+        setCookie("token", data.access_token);
         console.log(data);
       })
       .catch((err) => {
@@ -51,7 +57,8 @@ const LoginForm: React.FC = () => {
       {isLoggedIn ? (
         <div className="form-wrapper">
           <h2>Bem vinde, {username}!</h2>
-          <button onClick={() => setIsLoggedIn(false)}>Logout</button>
+          <h3>{cookies.token}</h3>
+          <Link href="/todos">Vá para a tela de tarefas</Link>
         </div>
       ) : (
         <div className="form-wrapper">
